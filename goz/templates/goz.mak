@@ -23,7 +23,7 @@
 	<script src="static/bower_components/angular-multi-select/isteven-multi-select.js"></script> -->
 	<script src="static/js/built/app.js"></script>
         <script src="static/js/built/services.js"></script>
-        <script src="static/js/built/controllers/gozControllers.js"></script>
+        <script src="static/js/built/controllers.js"></script>
     </head>
     
     <body ng-app>

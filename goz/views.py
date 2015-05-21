@@ -3,7 +3,7 @@ from pyramid.view import view_config
 import ledger
 
 
-@view_config(route_name='home', renderer='templates/home.mak')
+@view_config(route_name='home', renderer='templates/goz.mak')
 def home(request):
     return {'project': 'goz'}
 

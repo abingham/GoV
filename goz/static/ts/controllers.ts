@@ -1,5 +1,5 @@
-/// <reference path="../lib/angularjs/angular.d.ts"/>
-/// <reference path="../lib/underscore/underscore.d.ts"/>
+/// <reference path="lib/angularjs/angular.d.ts"/>
+/// <reference path="lib/underscore/underscore.d.ts"/>
 
 'use strict';
 
