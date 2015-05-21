@@ -14,10 +14,10 @@ module Goz.App {
             url: '/transactions',
             templateUrl: 'static/partials/transactions.html',
             controller: 'TransactionListController'
-        // }).state('viewTransaction', { // Show a single transaction
-        //     url: '/transactions/:id/view',
-        //     templateUrl: 'partials/transaction-view.html',
-        //     controller: 'TransactionViewController'
+        }).state('viewTransaction', { // Show a single transaction
+            url: '/transactions/:id/view',
+            templateUrl: 'static/partials/transaction-view.html',
+            controller: 'TransactionViewController'
         // }).state('newTransaction', { //state for adding a new transaction
         //     url: '/transactions/new',
         //     templateUrl: 'partials/transaction-add.html',

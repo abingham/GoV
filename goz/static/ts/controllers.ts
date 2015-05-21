@@ -1,5 +1,6 @@
 /// <reference path="lib/angularjs/angular.d.ts"/>
 /// <reference path="lib/underscore/underscore.d.ts"/>
+/// <reference path="lib/angular-ui-router/angular-ui-router.d.ts"/>
 
 'use strict';
 
@@ -17,20 +18,33 @@ module Goz.Controller {
         payee: string;
     };
     
-    interface GozScope extends angular.IScope {
+    interface TransactionListScope extends angular.IScope {
         // All transactions in a journal
         transactions: Transaction[];
     }
 
-    // The main controller for Goz.
-    //
+    // Main list of transactions
     gozControllers.controller(
 	'TransactionListController',
 	['$scope',
          'Transactions',
-	 ($scope: GozScope,
+	 ($scope: TransactionListScope,
           Transactions) => {
               $scope.transactions = Transactions.query();
 	 }]);
 
+    interface TransactionViewScope extends angular.IScope {
+        transaction: Transaction;
+    }
+    
+    gozControllers.controller(
+        'TransactionViewController',
+        ['$scope',
+         '$stateParams',
+         'Transactions',
+         ($scope: TransactionViewScope,
+          $stateParams,
+          Transactions) => {
+              $scope.transaction = Transactions.get({ id: $stateParams.id });
+          }]);
 }

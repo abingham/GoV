@@ -11,6 +11,11 @@ def home(request):
     return {'project': 'goz'}
 
 
+def _transaction_to_json(transaction):
+    return {'id': transaction.id(),
+            'payee': transaction.payee}
+
+
 @view_config(route_name='transactions',
              request_method='GET',
              renderer='json')
@@ -22,9 +27,8 @@ def get_all_transactions(request):
     journal_file = request.registry.settings['ledger_file']
     journal = ledger.read_journal(journal_file)
 
-    return [{'id': tx.id(),
-             'payee': tx.payee}
-            for tx in journal.xacts()]
+    return map(_transaction_to_json,
+               journal.xacts())
 
 
 @view_config(route_name='transaction',
@@ -37,9 +41,9 @@ def get_transaction(request):
     journal = ledger.read_journal(journal_file)
 
     try:
-        return next(
+        return _transaction_to_json(next(
             itertools.ifilter(lambda xact: xact.id() == xact_id,
-                              journal.xacts()))
+                              journal.xacts())))
     except StopIteration:
         raise pyramid.exceptions.NotFound(
             'No transaction with ID={}'.format(xact_id))

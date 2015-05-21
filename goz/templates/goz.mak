@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row top-buffer">
                 <div class="col-xs-8 col-xs-offset-2">
-                    <div ui-view></div> <!-- This is where our views will load -->
+                    <div ui-view></div>
                 </div>
             </div>
         </div>
