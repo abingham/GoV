@@ -1,3 +1,6 @@
+import itertools
+
+import pyramid.exceptions
 from pyramid.view import view_config
 
 import ledger
@@ -22,3 +25,21 @@ def get_all_transactions(request):
     return [{'id': tx.id(),
              'payee': tx.payee}
             for tx in journal.xacts()]
+
+
+@view_config(route_name='transaction',
+             request_method='GET',
+             renderer='json')
+def get_transaction(request):
+    xact_id = request.matchdict['id']
+
+    journal_file = request.registry.settings['ledger_file']
+    journal = ledger.read_journal(journal_file)
+
+    try:
+        return next(
+            itertools.ifilter(lambda xact: xact.id() == xact_id,
+                              journal.xacts()))
+    except StopIteration:
+        raise pyramid.exceptions.NotFound(
+            'No transaction with ID={}'.format(xact_id))

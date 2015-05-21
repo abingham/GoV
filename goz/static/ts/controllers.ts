@@ -25,14 +25,12 @@ module Goz.Controller {
     // The main controller for Goz.
     //
     gozControllers.controller(
-	'GozCtrl',
+	'TransactionListController',
 	['$scope',
          'Transactions',
 	 ($scope: GozScope,
           Transactions) => {
-              var transactions = Transactions.query(() => {
-                  $scope.transactions = transactions;
-              });
+              $scope.transactions = Transactions.query();
 	 }]);
 
 }
