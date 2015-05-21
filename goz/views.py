@@ -27,8 +27,11 @@ def get_all_transactions(request):
     journal_file = request.registry.settings['ledger_file']
     journal = ledger.read_journal(journal_file)
 
-    return map(_transaction_to_json,
-               journal.xacts())
+    try:
+        return map(_transaction_to_json,
+                   journal.xacts())
+    finally:
+        ledger.session.close_journal_files()
 
 
 @view_config(route_name='transaction',
@@ -47,3 +50,5 @@ def get_transaction(request):
     except StopIteration:
         raise pyramid.exceptions.NotFound(
             'No transaction with ID={}'.format(xact_id))
+    finally:
+        ledger.session.close_journal_files()
