@@ -9,16 +9,30 @@ module Goz.Controller {
 
     var gozControllers: angular.IModule = angular.module(
 	'gozControllers',
-	[]);
+	['gozServices']);
+
+    // A single transaction
+    interface Transaction {
+        id: string;
+        payee: string;
+    };
     
-    interface GozScope extends angular.IScope {}
+    interface GozScope extends angular.IScope {
+        // All transactions in a journal
+        transactions: Transaction[];
+    }
 
     // The main controller for Goz.
     //
     gozControllers.controller(
 	'GozCtrl',
 	['$scope',
-	 ($scope: GozScope) => {
+         'Transactions',
+	 ($scope: GozScope,
+          Transactions) => {
+              var transactions = Transactions.query(() => {
+                  $scope.transactions = transactions;
+              });
 	 }]);
 
 }
