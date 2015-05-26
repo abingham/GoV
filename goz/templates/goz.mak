@@ -35,7 +35,8 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a ui-sref="ledger">Home</a></li>
+                        <li class="active"><a ui-sref="transactions">Transaction</a></li>
+			<li><a ui-sref="reports">Reports</a></li>
                     </ul>
                 </div>
             </div>

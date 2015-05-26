@@ -47,4 +47,14 @@ module Goz.Controller {
           Transactions) => {
               $scope.transaction = Transactions.get({ id: $stateParams.id });
           }]);
+
+    interface ReportsViewScope extends angular.IScope {
+    }
+    
+    gozControllers.controller(
+	'ReportsController',
+	['$scope',
+	 ($scope: ReportsViewScope) => {
+	     // TODO
+	 }]);
 }

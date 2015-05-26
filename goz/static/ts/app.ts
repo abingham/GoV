@@ -18,6 +18,10 @@ module Goz.App {
             url: '/transactions/:id/view',
             templateUrl: 'static/partials/transaction-view.html',
             controller: 'TransactionViewController'
+	}).state('reports', {
+	    url: '/reports',
+	    templateUrl: '/static/partials/reports.html',
+	    controller: 'ReportListController'
         // }).state('newTransaction', { //state for adding a new transaction
         //     url: '/transactions/new',
         //     templateUrl: 'partials/transaction-add.html',
