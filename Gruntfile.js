@@ -1,32 +1,22 @@
 module.exports = function(grunt) {
 
-    grunt.loadNpmTasks("grunt-tsc");
-
     grunt.initConfig({
-        tsc: {
-            options: {
-                // global options
-                target: "es5",
-                module: "amd",
-                version: "1.5"
+        ts: {
+            default : {
+                src: ["**/*.ts",
+                      "!node_modules/**/*.ts",
+                      "!**/*.d.ts"],
+                outDir: "goz/static/js/built"
             },
-            task_name: {
-                options: {},
-                files: [{
-                    expand : true,
-                    dest   : "goz/static/js/built",
-                    cwd    : "goz/static/ts",
-                    ext    : ".js",
-                    src    : [
-                        "**/*.ts",
-                        "!**/*.d.ts"
-                    ]
-                }]
+            options: {
+                compiler: './node_modules/typescript/bin/tsc',
+                target: "es5",
+                module: "amd"
             }
         }
     });
 
     // Default task(s).
-    grunt.registerTask('default', ['tsc']);
-
+    grunt.loadNpmTasks("grunt-ts");
+    grunt.registerTask("default", ["ts"]);
 };

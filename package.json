@@ -7,7 +7,8 @@
     "license": "MIT",
     "devDependencies": {
         "grunt": "^0.4.5",
-        "grunt-tsc": "^1.0.7",
+        "typescript": "~1.5.0-beta",
+        "grunt-ts": "^4.1.0",
         "karma": "~0.10",
         "//" : {"protractor": "^1.1.1"},
         "//" : { "http-server": "^0.6.1"},
