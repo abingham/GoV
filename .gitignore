@@ -9,10 +9,13 @@ __pycache__
 .DS_Store
 *pyc
 
+.tscache
+.baseDir.ts
+
 .ropeproject
 
 node_modules
 bower_components
 
-**/built/**/*.js
+**/built/**/*
 
