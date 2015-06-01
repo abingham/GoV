@@ -5,7 +5,7 @@
     </tr>
     <tr ng-repeat="xact in transactions">
         <td>{{xact.id}}</td>
-        <td>{{xact.payee}}</td>
+        <td>{{xact.date}}</td>
         <td><a class="btn btn-primary" ui-sref="viewTransaction({id:xact.id})">View</a></td>
     </tr>
 </table>

@@ -1,17 +1,17 @@
-import ledger
+from beancount.loader import load_file
 from pyramid.config import Configurator
 
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    journal_file = settings['ledger_file']
-    journal = ledger.read_journal(journal_file)
+    journal_file = settings['beancount_file']
+    entries, errors, options = load_file(journal_file)
 
     config = Configurator(settings=settings)
 
-    config.add_request_method(lambda _: journal,
-                              'journal',
+    config.add_request_method(lambda _: entries,
+                              'entries',
                               reify=True)
 
     config.include('pyramid_chameleon')
