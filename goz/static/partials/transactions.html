@@ -1,11 +1,27 @@
+<h3>Transactions</h3>
 <table class="table transaction-table">
     <tr>
-        <td><h3>Transactions</h3></td>
-        <td></td>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Flag</th>
+        <th>Payee</th>
+        <th>Narration</th>
+        <th>Tags</th>
+        <th>Links</th>
+        <th>Postings</th>
     </tr>
     <tr ng-repeat="xact in transactions">
         <td>{{xact.id}}</td>
         <td>{{xact.date}}</td>
+        <td>{{xact.type}}</td>
+        <td>{{xact.flag}}</td>
+        <td>{{xact.payee}}</td>
+        <td>{{xact.narration}}</td>
+        <td>{{xact.tags}}</td>
+        <td>{{xact.links}}</td>
+        <td>{{xact.postings}}</td>
+
         <td><a class="btn btn-primary" ui-sref="viewTransaction({id:xact.id})">View</a></td>
     </tr>
 </table>

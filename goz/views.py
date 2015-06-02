@@ -1,17 +1,12 @@
-import itertools
-
-import pyramid.exceptions
+import beancount
 from pyramid.view import view_config
+
+from goz.json_util import transaction_to_json
 
 
 @view_config(route_name='home', renderer='templates/goz.mak')
 def home(request):
     return {'project': 'goz'}
-
-
-def _entry_to_json(entry):
-    return {'id': id(entry),
-            'date': str(entry.date)}
 
 
 @view_config(route_name='transactions',
@@ -20,12 +15,17 @@ def _entry_to_json(entry):
 def get_all_transactions(request):
     """Get a list of all transactions.
     """
-    return list(map(_entry_to_json,
-                    request.entries))
+
+    entries = list(map(
+        transaction_to_json,
+        filter(lambda e: isinstance(e, beancount.core.data.Transaction),
+               request.entries)))
+
+    return entries
 
 
 # @view_config(route_name='transaction',
-#              request_method='GET',
+#              request_method='GET',json
 #              renderer='json')
 # def get_transaction(request):
 #     xact_id = request.matchdict['id']
@@ -37,3 +37,8 @@ def get_all_transactions(request):
 #     except StopIteration:
 #         raise pyramid.exceptions.NotFound(
 #             'No transaction with ID={}'.format(xact_id))
+
+# @view_config(route_name='accounts',
+#              request_method='GET',
+#              renderer='json')
+# def

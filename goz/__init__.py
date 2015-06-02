@@ -1,6 +1,7 @@
 from beancount.loader import load_file
 from pyramid.config import Configurator
 
+import goz.json_util
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -9,7 +10,7 @@ def main(global_config, **settings):
     entries, errors, options = load_file(journal_file)
 
     config = Configurator(settings=settings)
-
+    config.add_renderer('json', goz.json_util.make_json_renderer())
     config.add_request_method(lambda _: entries,
                               'entries',
                               reify=True)

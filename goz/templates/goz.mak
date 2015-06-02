@@ -36,6 +36,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a ui-sref="transactions">Transaction</a></li>
+			<li><a ui-sref="accounts">Accounts</a></li>
 			<li><a ui-sref="reports">Reports</a></li>
                     </ul>
                 </div>
@@ -43,7 +44,7 @@
         </nav>
         <div class="container">
             <div class="row top-buffer">
-                <div class="col-xs-8 col-xs-offset-2">
+                <div class="col-md-12">
                     <div ui-view></div>
                 </div>
             </div>
